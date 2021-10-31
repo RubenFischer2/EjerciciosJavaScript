@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciudades</title>
+</head>
+
+<script>
+
+    const map = new Map;
+    let ciudad;
+    let nhabitantes;
+    let nveces;
+
+
+//Vamos introduciendo los datos
+    nveces = prompt("¿Cuantas ciudades quiere introducir?")
+
+    for (let i = 0; i < nveces; i++) {
+
+        ciudad = prompt("Nombre de la ciudad:");
+        nhabitantes = prompt("Numero de habitantes:");
+
+        map.set(ciudad,nhabitantes);       
+    }
+
+
+//Funcion ver todas las ciudades
+    let ver = () =>{
+        document.write("Ciudades y nº de habitantes.<br>")
+
+        for (let [clave, valor] of map) {
+            document.write(clave + '------' + valor);
+            document.write("<br>");
+        }
+    }
+    
+
+//Funcion tamaño del map
+    let tamaño = () =>{
+        document.write(`Hay un total de ${map.size} ciudades registradas`)
+    }
+
+
+//Funcion borrar ciudad
+    let borrar = () =>{
+        if (map.size === 0) {
+            document.write("Registro de ciudades vacío")
+        }else {
+        let ciudad;
+        ciudad = prompt("Introduce la ciudad a borrar");
+
+        if (map.delete(ciudad)) {
+            document.write("Ciudad borrada correctamente")
+        }
+        else{
+            document.write("Ciudad no existente")
+        }
+    }
+    }
+
+
+//Función añadir ciudad
+    let añadir = () =>{
+
+        ciudad = prompt("Nombre de la ciudad:");
+        nhabitantes = parseInt(prompt("Numero de habitantes:"));
+
+        map.set(ciudad,nhabitantes);
+        document.write("Ciudad añadida correctamente");
+        document.write(`<br>`);
+        document.write(`Ciudad: ${ciudad} ---- Nº de habitantes: ${map.get(ciudad)}`);
+    }
+
+
+//Funcion mayor numero de habitantes
+    let mayorHabitante = () =>{
+        document.write("<h1>Función aún no disponible</h1>");
+        }
+
+
+//Funcion menor numero de habitantes
+    let menorHabitante = () =>{
+    document.write("<h1>Función aún no disponible</h1>");
+    }
+</script>
+
+
+<body>
+
+    <!-- ******** AÑADIR CIUDAD ******** -->
+    <input type="button" value="Ver ciudades" onclick="ver();" />
+
+    <!-- ******** NUMERO DE CIUDADES ******** -->
+    <input type="button" value="Numero de ciudades" onclick="tamaño();" />
+
+    <!-- ******** BORRAR CIUDAD ******** -->
+    <input type="button" value="Borrar" onclick="borrar();" />
+
+    <!-- ******** AÑADIR CIUDAD ******** -->
+    <input type="button" value="Añadir" onclick="añadir();" />
+
+    <!-- ******** MAYOR HABITANTES ******** -->
+    <input type="button" value="Mayor Ciudad" onclick="mayorHabitante();" />
+
+    <!-- ******** MENOR HABITANTES ******** -->
+    <input type="button" value="Mayor Ciudad" onclick="menorHabitante();" />
+
+</body>
+</html>

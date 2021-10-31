@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital</title>
+</head>
+
+<script>
+    class Hospital{
+
+        constructor(nombre, ciudad, numPacientes){
+            this.nombre = nombre;
+            this.ciudad = ciudad;
+            this.numPacientes = numPacientes;
+
+            this.pacientes = new Array();
+
+            for (let i = 0; i < numPacientes; i++) {
+                this.pacientes[i] = new Paciente(i, "Paciente " + i, "COVID-19")
+            }
+        }
+
+
+        eliminarPaciente(n){
+            if(this.pacientes.splice(n,1)){
+                alert("Alta:Sí")
+            }else{
+                alert("No existe el paciente ingresado.")
+            }
+            
+        }
+
+        mostrarPacientes(){
+            for (let i = 0; i < this.pacientes.length; i++) {
+                alert(this.pacientes[i].nombre);  
+            }
+        }
+    }
+
+
+    class Paciente{
+
+        constructor(dni,nombre,enfermedad){
+            this.dni = dni;
+            this.nombre = nombre;
+            this.enfermedad = enfermedad;
+        }
+    }
+
+
+    function main(){
+
+        let hospital = new Hospital("ASISA","Cadiz",5);
+
+        //Mostramos todos los pacientes
+        hospital.mostrarPacientes();
+
+        //Borramos el paciente que se encuentre en la primera posicion
+        hospital.eliminarPaciente(0);
+
+        hospital.mostrarPacientes(); 
+
+        hospital.eliminarPaciente(0);
+        
+        hospital.mostrarPacientes(); 
+    }
+
+    main();
+
+
+</script>
+
+
+<body>
+    
+</body>
+</html>

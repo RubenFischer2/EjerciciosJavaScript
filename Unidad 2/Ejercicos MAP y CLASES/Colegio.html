@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+
+   class Alumno {
+
+	constructor(dni, nombre, notaMedia) {
+
+		this.dni = dni;
+		this.nombre = nombre;
+		this.notaMedia = notaMedia;
+	}
+
+	consultarNota() {
+		alert("El alumno " + this.nombre + " tiene un " + this.notaMedia);
+	}
+
+	cambiarNotaMedia(nuevaNota) {
+		this.notaMedia = nuevaNota;
+	}
+
+}
+
+
+
+class Colegio {
+
+	constructor(nombre, nAulas, nAlumnos) {
+
+		this.nombre = nombre;
+		this.nAulas = nAulas;
+
+		this.arrayAlumnos = new Array();
+
+		for (let i = 0; i < nAlumnos; i++) {
+			
+			this.arrayAlumnos[i] = new Alumno(i, "Alumno" + i, 5.0);
+		}
+
+	}
+
+
+	consultarNotaMedia(n) {
+		this.arrayAlumnos[n].consultarNota();
+	}
+
+
+	cambiarNotaMedia(n, nuevaNota) {
+
+        alert("Cambiando nota del " + this.arrayAlumnos[n].nombre +" ...");
+		this.arrayAlumnos[n].cambiarNotaMedia(nuevaNota);
+	}
+}
+
+
+
+
+function main() {
+
+//Creamos el colegio
+	let colegio = new Colegio("Uriarte", 10, 10);
+
+//Consultamos las notas de los alumnos
+	colegio.consultarNotaMedia(0);
+	colegio.consultarNotaMedia(2);
+
+//Cambiamos la nota del alumno 0 a un 8
+	colegio.cambiarNotaMedia(0, 8.0);
+    colegio.consultarNotaMedia(0);
+
+//Cambiamos la nota del alumno 2 a un 6,5
+	colegio.cambiarNotaMedia(2, 6.5);	
+	colegio.consultarNotaMedia(2);
+
+}
+
+main();
+
+</script>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeropuerto</title>
+
+<script>
+
+
+    class Aeropuerto{
+
+    constructor(nombre,ciudad,nVuelosDiarios){
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.nVuelosDiarios = nVuelosDiarios
+
+        this.ArrayVuelos = new Array();
+
+        for (let i = 0; i < nVuelosDiarios; i++) {
+        
+        this.ArrayVuelos[i] = new Vuelo(i, "21:00", "23:00" );
+    }
+}
+
+    cambiarLlegada(n, nuevaLlegada){
+            this.ArrayVuelos[n].cambiarHoraLlegada(nuevaLlegada);
+        }
+        
+
+    cambiarSalida(n, nuevaSalida){
+        this.ArrayVuelos[n].cambiarHoraSalida(nuevaSalida);
+    }
+
+    comprobarHoraLLegadaSalida(n){
+        alert(this.ArrayVuelos[n].comprobarHora());
+    }
+
+    mostrarHorario(n){
+            alert(`Hora de llegada: ${this.ArrayVuelos[n].horaLlegada}, Hora de salida: ${this.ArrayVuelos[n].horaSalida}`)
+        }
+
+}
+
+
+class Vuelo{
+
+constructor(codigo, horaSalida, horaLlegada){
+    this.codigo = codigo;
+    this.horaLlegada = horaLlegada;
+    this.horaSalida = horaSalida;
+
+}
+
+cambiarHoraLlegada(nuevaLlegada){
+    this.horaLlegada = nuevaLlegada;
+}
+
+cambiarHoraSalida(nuevaSalida){
+    this.horaSalida = nuevaSalida;
+}
+
+comprobarHora(){
+
+    //Separamos la hora de llegada
+    let llegada = this.horaLlegada.split(":");
+    
+    let hLlegada = parseInt(llegada[0]);
+    let mLlegada = parseInt(llegada[1]);
+
+    //Separamos la hora de salida
+    let salida = this.horaSalida.split(":");
+
+    let hSalida = parseInt(salida[0]);
+    let mSalida = parseInt(salida[1]);
+
+    if(hLlegada > hSalida){
+        return true;
+
+    }else if( hLlegada < hSalida ){
+        return false;
+
+    }else if(mLlegada > mSalida){
+        return true;
+
+    }else if( mLlegada < mSalida ){
+        return false;
+    }          
+}
+
+}
+
+
+    function main(){
+
+        let aeropuerto = new Aeropuerto("Atocha","Madrid",5);
+
+        aeropuerto.mostrarHorario(0);
+        aeropuerto.cambiarLlegada(0, "14:00");
+        aeropuerto.cambiarSalida(0,"12:00");
+        aeropuerto.mostrarHorario(0);
+
+        aeropuerto.comprobarHoraLLegadaSalida(0);
+    }
+
+    main();
+
+ </script>
+</head>
+<body>
+    
+</body>
+</html>
